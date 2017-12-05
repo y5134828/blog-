@@ -1,0 +1,20 @@
+<div id="footer_wrap">
+    <div id="footer">
+        <div class="footer_navi">
+            <ul  class="menu">
+                {volist name="recBottom" id="recBottom"}
+                <li id="menu-item-156" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-156">
+                    <a href=" 
+                    {if condition="$recBottom['type'] eq 1"}{:url('Artlist/index',array('cateid'=>$recBottom['id']))}{/if}
+                    {if condition="$recBottom['type'] eq 2"}{:url('Page/index',array('cateid'=>$recBottom['id']))}{/if}
+                    {if condition="$recBottom['type'] eq 3"}{:url('Imglist/index',array('cateid'=>$recBottom['id']))}{/if}">{$recBottom.cate_name}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="footer_info">
+            <span class="legal">Copyright &#169; 2017-1020 版权所有&#160;&#160;&#160;
+                备******号&#160;&#160;&#160;
+
+        </div>
+    </div>
+</div>

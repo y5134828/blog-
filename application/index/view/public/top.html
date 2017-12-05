@@ -1,0 +1,61 @@
+<div id="header_wrap">
+    <div id="header">
+        <div style="float: left; width: 250px;">
+            <h1>
+                <a href="{:url('index/index')}" title="首页">P、个人博客</a>
+                <div class="" id="logo-sub-class">
+                </div>
+            </h1>
+        </div>
+        <div id="navi">
+
+<ul id="jsddm">
+<li><a class="navi_home" href="{:url('index/index')}">首页</a></li>
+{volist name="cateres" id="cate"}
+<li><a {if condition="$cate['children'] neq ''"} class="havechild" {/if} 
+        href="{if condition="$cate['type'] eq 1"}{:url('Artlist/index',array('cateid'=>$cate['id']))}
+        {elseif condition="$cate['type'] eq 2" /}{:url('Page/index',array('cateid'=>$cate['id']))}
+        {elseif condition="$cate['type'] eq 3" /}{:url('Imglist/index',array('cateid'=>$cate['id']))}{/if}">
+  
+  <!-- href="http://127.0.0.1/bick/public/index.php/index/{if condition="$cate['type'] eq 1"}Artlist{elseif condition="$cate['type'] eq 2"}Page{else condition="$cate['type'] eq 3"}Imglist{/if}/index/cateid/{$cate['id']}" -->
+
+  {$cate.cate_name}</a>
+    {if condition="$cate['children'] neq ''"}
+    <ul>
+    <?php foreach($cate['children'] as $key => $value):?>
+        <li>  
+        <a href="{if condition="$value['type'] eq 1"}{:url('Artlist/index',array('cateid'=>$value['id']))}
+        {elseif condition="$value['type'] eq 2" /}{:url('Page/index',array('cateid'=>$value['id']))}
+        {elseif condition="$value['type'] eq 3" /}{:url('Imglist/index',array('cateid'=>$value['id']))}{/if}">
+      {$value['cate_name']}</a></li>
+    <?php endforeach;?>
+    </ul>
+    {/if}
+ </li>
+{/volist}
+</ul>
+
+            <div style="clear: both;">
+            </div>
+
+            
+        </div>
+        <div style="float: right; width: 209px;">
+            <div class="widget" style="height: 30px; padding-top: 20px;">
+                <div style="float: left;">
+      <form  name="formsearch" action="{:url('search/index')}" method="get">                
+<input name="search" type="text" style="background-color: #000000;padding-left: 10px; font-size: 12px;font-family: 'Microsoft Yahei'; color: #999999;height: 29px; width: 160px; border: solid 1px #666666; line-height: 28px;" id="go" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}" />
+        </form>
+                        </div>
+                <div style="float: left;">
+                    <img src="__PUBLIC__/static/index/images/search-new.png" id="imgSearch" style="cursor: pointer; margin: 0px;
+                        padding: 0px;" onclick="subForm()"  /></div>
+                <div style="clear: both;">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+</div>

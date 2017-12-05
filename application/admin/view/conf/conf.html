@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>企业站制作——by me</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__PUBLIC__/static/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__PUBLIC__/static/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/static/admin/style/demo.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/typicons.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	   <!-- 头部 -->
+    {include file="public/top" /}
+    <!-- /头部 -->
+    
+    <div class="main-container container-fluid">
+        <div class="page-container">
+            <!-- Page Sidebar -->
+           {include file="public/left" /}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('index/index')}">首页</a>
+                    </li>
+                                        <li class="active">配置管理</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<button type="button" tooltip="添加用户" class="btn btn-sm btn-azure btn-addon" >网站配置项
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <form action="{:url('Conf/conf')}" method="post">
+                        <table class="table table-bordered table-hover">
+                            <thead class="">
+                                <tr>
+                                    <th class="text-right" width="15%">配置名称</th>
+                                    <th class="text-left">配置值</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($confres as $k => $v):?>
+                                <tr>
+                                    <td align="right"><?php echo $v['cnname']?></td>
+                                    <td align="left">
+                                    <?php if($v['type']==1):?>
+                                    <input type="text" name="<?php echo $v['enname']?>" value="<?php echo $v['value']?>" class="form-control" style="width:600px">
+                                    <?php endif;?>
+
+                                    <?php if($v['type']==2):?>
+                                    <textarea class="form-control" style="width:600px" name="<?php echo $v['enname']?>"><?php echo $v['value']?></textarea>
+                                    <?php endif;?>
+
+                                    <?php if($v['type']==3):
+                                        if($v['values']){
+                                        $arr=explode(',',$v['values']);
+                                        }
+                                        foreach($arr as $k1 => $v1):
+                                    ?>
+                                            <label style="margin-right: 10px; ">
+                                            <input <?php if($v['value']==$v1){echo 'checked="checked"';}?> type="radio" name="<?php echo $v['enname']?>" value="<?php echo $v1;?>">
+                                            <span class="text"><?php echo $v1;?></span>
+                                            </label>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+
+                                    <?php if($v['type']==4):?>
+                                        <label style="margin-right: 10px; ">
+                                        <input <?php if($v['value']==$v['values']){echo 'checked="checked"';}?> type="checkbox" name="<?php echo $v['enname']?>" value="<?php echo $v['values'];?>">
+                                        <span class="text"><?php echo $v['values'];?></span>
+                                        </label>
+                                    <?php endif;?>
+
+                                    <?php if($v['type']==5):
+                                          if($v['values']){
+                                        $arrselect=explode(',',$v['values']);
+                                        }
+                                    ?>
+                                    <select name="<?php echo $v['enname']?>">
+                                    <?php foreach($arrselect as $k2 => $v2):?>
+                                        <option <?php if($v['value']==$v2){echo 'selected="selected"';}?> value="<?php echo $v2;?>"><?php echo $v2;?></option>
+                                    <?php endforeach;?>
+                                    </select>
+                                        
+                                    <?php endif;?>
+
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                        </tbody>
+                        </table>
+                        <div><input type="submit" value="修改配置" style="margin:10px 50%;" class="btn btn-primary btn-sm shiny"> </div>
+                    </form>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__PUBLIC__/static/admin/style/jquery_002.js"></script>
+    <script src="__PUBLIC__/static/admin/style/bootstrap.js"></script>
+    <script src="__PUBLIC__/static/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__PUBLIC__/static/admin/style/beyond.js"></script>
+    
+
+
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>企业站制作——by me</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__PUBLIC__/static/admin/style/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__PUBLIC__/static/admin/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/static/admin/style/demo.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/typicons.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/admin/style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	   <!-- 头部 -->
+    {include file="public/top" /}
+    <!-- /头部 -->
+    
+    <div class="main-container container-fluid">
+        <div class="page-container">
+            <!-- Page Sidebar -->
+           {include file="public/left" /}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="{:url('index/index')}">首页</a>
+                    </li>
+                                        <li class="active">权限管理</li>
+                                        </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<button type="button" tooltip="添加用户" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('add')}'"> <i class="fa fa-plus"></i> 新增权限
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <form action="" method="post">
+                        <table class="table table-bordered table-hover">
+                            <thead class="">
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">排序 <input type="submit" name="" class="btn btn-primary btn-sm shiny"> </th>
+                                    <th class="text-center">权限名称</th>
+                                    <th class="text-center">控制器/方法</th>
+                                    <th class="text-center">级别</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {volist name='authRuleRes' id='authRule'}
+                                <tr>
+                                    <td align="center">{$authRule.id}</td>
+                                    <td align="center">{if condition="$authRule['pid'] eq 0"}<input type="text" name="{$authRule.id}" style="width:50px;text-align:center;" value="{$authRule.sort}">{/if}</td>
+                                    <td><?php echo str_repeat('-',$authRule['level']*4)?>{$authRule.title}</td>
+                                    <td align="center">{$authRule.name}</td>
+                                    <td align="center">级别：<span class="red ">{$authRule.level}</span></td>
+                                    <td align="center">
+                                        <a href="{:url('authRule/edit',array('id'=>$authRule['id']))}" class="btn btn-primary btn-sm shiny">
+                                            <i class="fa fa-edit"></i> 编辑
+                                        </a>
+                                        <a href="{:url('authRule/del',array('id'=>$authRule['id']))}" onClick="return confirm('是否删除')" class="btn btn-danger btn-sm shiny">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </a>
+                                    </td>
+                                </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div>
+                	                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__PUBLIC__/static/admin/style/jquery_002.js"></script>
+    <script src="__PUBLIC__/static/admin/style/bootstrap.js"></script>
+    <script src="__PUBLIC__/static/admin/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__PUBLIC__/static/admin/style/beyond.js"></script>
+    
+
+
+</body></html>
